@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produk - Garage 214</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">
+            <img src="img/icon.png" alt="Logo Garage">
+            <div>GARAGE <span>214</span></div>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="tentang.html">Tentang</a></li>
+                <li><a href="produk.html" class="active">Produk/Jasa</a></li>
+                <li><a href="testimoni.html">Testimoni</a></li>
+                <li><a href="kontak.html">Kontak</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1 class="page-title">Sparepart & Layanan</h1>
+        <p style="text-align:center; margin-bottom:20px; font-size:0.9rem; color:#888;">Klik produk untuk melihat detail</p>
+
+        <div class="product-list-container">
+            
+            <div class="product-row" 
+                 onclick="openModal(this)"
+                 data-img="img/p1.jpg"
+                 data-title="NOKEN AS RACING SKYWAVE/SPIN/HAYATE"
+                 data-price="Rp 400.000"
+                 data-desc="Noken as custom durasi in 260 ex 265. Lift 8.5mm. Cocok untuk bore up harian 150cc ke atas. Power atas lebih jalan.">
+                
+                <div class="product-thumb"><img src="img/p1.jpg" onerror="this.src='https://placehold.co/100x100/333/fff?text=IMG'"></div>
+                <div class="product-details">
+                    <div class="product-title">NOKEN AS RACING SKYWAVE/SPIN/HAYATE</div>
+                    <div class="product-price">Rp 400.000</div>
+                </div>
+                <div class="row-arrow">&#10095;</div>
+            </div>
+
+            <div class="product-row" 
+                 onclick="openModal(this)"
+                 data-img="img/p2.jpg"
+                 data-title="NOKEN AS RACING VARIO Motorcycle"
+                 data-price="Rp 400.000"
+                 data-desc="Tipe R1 untuk harian. Low noise (tidak berisik). Menambah akselerasi tanpa mengorbankan konsumsi BBM. PnP (Plug and Play).">
+                
+                <div class="product-thumb"><img src="img/p2.jpg" onerror="this.src='https://placehold.co/100x100/333/fff?text=IMG'"></div>
+                <div class="product-details">
+                    <div class="product-title">NOKEN AS RACING VARIO Motorcycle</div>
+                    <div class="product-price">Rp 400.000</div>
+                </div>
+                <div class="row-arrow">&#10095;</div>
+            </div>
+
+            <div class="product-row" 
+                 onclick="openModal(this)"
+                 data-img="img/p3.jpg"
+                 data-title="PULLY RACING GENIO, BEAT, SCOOPY, KOJ"
+                 data-price="Rp 255.000"
+                 data-desc="Spec Road Race. Material Hardened Steel. Awet dan presisi. Garansi ngelitik uang kembali.">
+                
+                <div class="product-thumb"><img src="img/p3.jpg" onerror="this.src='https://placehold.co/100x100/333/fff?text=IMG'"></div>
+                <div class="product-details">
+                    <div class="product-title">PULLY RACING GENIO, BEAT, SCOOPY, KOJ</div>
+                    <div class="product-price">Rp 255.000</div>
+                </div>
+                <div class="row-arrow">&#10095;</div>
+            </div>
+
+            <div class="product-row" 
+                 onclick="openModal(this)"
+                 data-img="img/p4.jpg"
+                 data-title="NOKEN AS RACING YAMAHA MIO"
+                 data-price="Rp 400.000"
+                 data-desc="Rumah Roller + Kipas bubut derajat 13.8 & Kerok jalur roller presisi. Menghilangkan gredek dan menambah top speed.">
+                
+                <div class="product-thumb"><img src="img/p4.jpg" onerror="this.src='https://placehold.co/100x100/333/fff?text=IMG'"></div>
+                <div class="product-details">
+                    <div class="product-title">NOKEN AS RACING YAMAHA MIO</div>
+                    <div class="product-price">Rp 400.000</div>
+                </div>
+                <div class="row-arrow">&#10095;</div>
+            </div>
+
+            <div class="product-row" 
+                 onclick="openModal(this)"
+                 data-img="img/p5.jpg"
+                 data-title="PULLY RACING HONDA BEAT K44"
+                 data-price="Rp 255.000"
+                 data-desc="Noken as Mio Sporty/Smile/Soul. Lift tinggi aman klep standar. Cocok untuk drag 201m atau harian kebut.">
+                
+                <div class="product-thumb"><img src="img/p5.jpg" onerror="this.src='https://placehold.co/100x100/333/fff?text=IMG'"></div>
+                <div class="product-details">
+                    <div class="product-title">PULLY RACING HONDA BEAT K44</div>
+                    <div class="product-price">Rp 255.000</div>
+                </div>
+                <div class="row-arrow">&#10095;</div>
+            </div>
+
+            <div class="product-row" 
+                 onclick="openModal(this)"
+                 data-img="img/p6.jpg"
+                 data-title="PULLY RACING HONDA VARIO KZR"
+                 data-price="Rp 255.000"
+                 data-desc="Set Pully Depan Custom untuk Beat ESP/Scoopy ESP (Kode K44). Respon gas lebih padat.">
+                
+                <div class="product-thumb"><img src="img/p6.jpg" onerror="this.src='https://placehold.co/100x100/333/fff?text=IMG'"></div>
+                <div class="product-details">
+                    <div class="product-title">PULLY RACING HONDA VARIO KZR</div>
+                    <div class="product-price">Rp 255.000</div>
+                </div>
+                <div class="row-arrow">&#10095;</div>
+            </div>
+
+            <div class="product-row" 
+                 onclick="openModal(this)"
+                 data-img="img/p7.jpg"
+                 data-title="PULLY RACING HONDA VARIO K36"
+                 data-price="Rp 255.000"
+                 data-desc="Per CVT bahan baja jepang, anti letoy kena panas. Ukuran 1500 RPM cocok untuk stop n go macet Jakarta.">
+                
+                <div class="product-thumb"><img src="img/p7.jpg" onerror="this.src='https://placehold.co/100x100/333/fff?text=IMG'"></div>
+                <div class="product-details">
+                    <div class="product-title">PULLY RACING HONDA VARIO K36</div>
+                    <div class="product-price">Rp 255.000</div>
+                </div>
+                <div class="row-arrow">&#10095;</div>
+            </div>
+
+            <div class="product-row" 
+                 onclick="openModal(this)"
+                 data-img="img/p8.jpg"
+                 data-title="NOKEN AS RACING MAXI SERIES"
+                 data-price="Rp 550.000"
+                 data-desc="Mangkok ganda custom bolong & kartel kasar. Obat ampuh gredek Vario/PCX/Nmax. Kampas ganda lebih gigit.">
+                
+                <div class="product-thumb"><img src="img/p8.jpg" onerror="this.src='https://placehold.co/100x100/333/fff?text=IMG'"></div>
+                <div class="product-details">
+                    <div class="product-title">NOKEN AS RACING MAXI SERIES</div>
+                    <div class="product-price">Rp 550.000</div>
+                </div>
+                <div class="row-arrow">&#10095;</div>
+            </div>
+
+            <div class="product-row" 
+                 onclick="openModal(this)"
+                 data-img="img/p9.jpg"
+                 data-title="PULLY RACING 2DP MAXI ONLY"
+                 data-price="Rp 295.000"
+                 data-desc="Paket Sultan: Blok Ceramic 58mm + Piston Forged + Injektor Racing + Packing. Tinggal pasang, motor auto terbang.">
+                
+                <div class="product-thumb"><img src="img/p9.jpg" onerror="this.src='https://placehold.co/100x100/333/fff?text=IMG'"></div>
+                <div class="product-details">
+                    <div class="product-title">PULLY RACING 2DP MAXI ONLY</div>
+                    <div class="product-price">Rp 295.000</div>
+                </div>
+                <div class="row-arrow">&#10095;</div>
+            </div>
+
+        </div>
+    </main>
+
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <img id="m-img" class="modal-img" src="" alt="Produk">
+            <h2 id="m-title" class="modal-title">Nama Produk</h2>
+            <span id="m-price" class="modal-price">Rp 0</span>
+            <p id="m-desc" class="modal-desc">Deskripsi produk...</p>
+            <a id="m-buy" href="#" class="btn-modal-buy" target="_blank">Beli via WhatsApp</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Garage 214. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Ambil elemen modal
+        const modal = document.getElementById("productModal");
+        const mImg = document.getElementById("m-img");
+        const mTitle = document.getElementById("m-title");
+        const mPrice = document.getElementById("m-price");
+        const mDesc = document.getElementById("m-desc");
+        const mBuy = document.getElementById("m-buy");
+
+        // Fungsi Buka Modal
+        function openModal(element) {
+            // Ambil data dari atribut data- di HTML
+            const img = element.getAttribute("data-img");
+            const title = element.getAttribute("data-title");
+            const price = element.getAttribute("data-price");
+            const desc = element.getAttribute("data-desc");
+
+            // Masukkan data ke dalam Modal
+            mImg.src = img;
+            mTitle.innerText = title;
+            mPrice.innerText = price;
+            mDesc.innerText = desc;
+
+            // Set Link WhatsApp dinamis sesuai produk
+            const waNumber = "6285217012984";
+            const message = `Halo Garage214, saya mau beli *${title}* seharga ${price}. Apakah stok ready?`;
+            mBuy.href = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
+
+            // Tampilkan Modal dengan animasi flex
+            modal.style.display = "flex";
+        }
+
+        // Fungsi Tutup Modal
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+        // Tutup modal kalau klik di luar kotak putih
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
