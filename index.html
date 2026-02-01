@@ -3,116 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beranda - Garage 214</title>
-    <link rel="stylesheet" href="style.css">
+    <title>System Compromised</title>
+    <style>
+        body {
+            background-color: black;
+            color: #00FF00; /* Hijau Matrix */
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3rem;
+            text-shadow: 0 0 10px #00FF00;
+            animation: blink 0.8s infinite;
+        }
+
+        .message {
+            font-size: 1.2rem;
+            margin-top: 20px;
+        }
+
+        .glitch {
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        /* Efek Berkedip */
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Background Matrix Sederhana */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+    </style>
 </head>
 <body>
-    
-    <header>
-        <a href="index.html" class="logo">
-            <img src="img/icon.png" alt="Logo">
-            <div>GARAGE <span>214</span></div>
-        </a>
-        <nav>
-            <ul>
-                <li><a href="index.html" class="active">Beranda</a></li>
-                <li><a href="tentang.html">Tentang</a></li>
-                <li><a href="produk.html">Produk/Jasa</a></li>
-                <li><a href="testimoni.html">Testimoni</a></li>
-                <li><a href="kontak.html">Kontak</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-        <section class="hero">
-            
-            <div class="clock-container">
-                <div class="clock-time" id="digitalClock">00:00:00</div>
-                <div class="clock-date" id="digitalDate">MEMUAT WAKTU...</div>
-            </div>
-
-            <h1>SOLUSI PERFORMA MOTOR</h1>
-            <p>Spesialis Custom Pully, Bore Up, & Tune Up di Jakarta Utara.</p>
-            <a href="produk.html" class="btn">Lihat Layanan Kami</a>
-        </section>
-
-        <section>
-            <h2 style="text-align: center; color: var(--primary); margin-bottom: 20px;">Selamat Datang di Garage 214</h2>
-            <p style="text-align: center; max-width: 800px; margin: 0 auto;">
-                Kami adalah bengkel spesialis yang fokus pada peningkatan performa motor harian dan touring. 
-                Dengan penanganan mekanik berpengalaman, kami menjamin motor Anda menjadi lebih responsif.
-            </p>
-        </section>
-    </main>
-
-    <div id="welcomeOverlay" class="welcome-overlay">
-        <div class="welcome-ui-box">
-            
-            <div class="welcome-visual"></div>
-            
-            <div class="welcome-content">
-                <span class="welcome-tag">EST. 2026</span>
-                <h2>Welcome to<br>Garage <span style="color:var(--primary)">214</span></h2>
-                <p>
-                    Pusat modifikasi dan perawatan motor terpercaya. 
-                    Kami mengubah performa standar menjadi luar biasa.
-                    <br><br>
-                    <em>"Speed is not just a number, it's an art."</em>
-                </p>
-                
-                <button class="btn-welcome" onclick="closeWelcome()">
-                    MULAI JELAJAHI 🚀
-                </button>
-            </div>
-    
-        </div>
+    <div class="overlay"></div>
+    <div class="container">
+        <h1>YOU HAVE BEEN HACKED</h1>
+        <p class="message">Your system has been compromised by <span class="glitch">[ Fandirr_Project ]</span></p>
+        <p>Security Status: <span style="color: red;">CRITICAL</span></p>
+        <p>Semua data Anda telah dienkripsi untuk tujuan edukasi.</p>
     </div>
-
-    <footer>
-        <p>&copy; 2026 Garage 214. All Rights Reserved.</p>
-    </footer>
-
-    <script>
-        // --- LOGIKA JAM DIGITAL ---
-        function updateClock() {
-            const now = new Date();
-            
-            // Ambil Jam, Menit, Detik
-            let h = now.getHours().toString().padStart(2, '0');
-            let m = now.getMinutes().toString().padStart(2, '0');
-            let s = now.getSeconds().toString().padStart(2, '0');
-            
-            // Ambil Tanggal (Format Indonesia)
-            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            const dateString = now.toLocaleDateString('id-ID', options);
-
-            // Update HTML
-            document.getElementById('digitalClock').innerText = `${h}:${m}:${s}`;
-            document.getElementById('digitalDate').innerText = dateString;
-        }
-
-        // Jalankan jam setiap 1 detik (1000ms)
-        setInterval(updateClock, 1000);
-        updateClock(); // Jalankan langsung saat load biar gak nunggu 1 detik
-
-        // --- LOGIKA WELCOME MODAL ---
-        window.onload = function() {
-            // Cek apakah user sudah pernah masuk (pakai sessionStorage)
-            // sessionStorage hilang kalau browser ditutup (cocok untuk welcome)
-            if (!sessionStorage.getItem('alreadyVisited')) {
-                setTimeout(() => {
-                    document.getElementById('welcomeOverlay').classList.add('show');
-                }, 500); // Muncul setelah 0.5 detik loading
-            }
-        }
-
-        function closeWelcome() {
-            document.getElementById('welcomeOverlay').classList.remove('show');
-            // Tandai user sudah masuk, jadi kalau refresh gak muncul lagi
-            sessionStorage.setItem('alreadyVisited', 'true');
-        }
-    </script>
-
 </body>
 </html>
