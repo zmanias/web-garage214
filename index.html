@@ -3,594 +3,199 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Garage 214 - Solusi Performa Motor</title>
-    
-    <!-- FontAwesome untuk Ikon -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap" rel="stylesheet">
-
+    <title>SYSTEM FAILURE</title>
     <style>
-        /* --- CSS VARIABLES & RESET --- */
-        :root {
-            --primary: #ff4500;   /* Oranye Racing */
-            --dark: #121212;      /* Hitam Background */
-            --card-bg: #1e1e1e;   /* Abu Gelap */
-            --text: #f0f0f0;
-            --text-gray: #a0a0a0;
+        /* RESET & DASAR */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-        
-        body { 
-            background-color: var(--dark); 
-            color: var(--text); 
-            line-height: 1.6; 
-            display: flex; 
-            flex-direction: column; 
-            min-height: 100vh; 
-            overflow-x: hidden;
-        }
-
-        /* --- SPA TRANSITION LOGIC --- */
-        .hidden-section {
-            display: none !important;
-        }
-
-        .visible-section {
-            display: block;
-            animation: fadeIn 0.5s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* --- HEADER & NAVIGASI --- */
-        header { 
-            background: #000; 
-            padding: 15px 5%; 
-            border-bottom: 3px solid var(--primary); 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .logo {
+        body {
+            background-color: #050505;
+            font-family: 'Courier New', Courier, monospace;
+            color: #fff;
+            overflow: hidden; /* Mencegah scrollbar */
+            height: 100vh;
             display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            font-size: 1.5rem; 
-            font-weight: 800; 
-            color: #fff; 
-            text-transform: uppercase; 
-            letter-spacing: 1px;
-        }
-
-        /* --- FIX UKURAN ICON SESUAI REQUEST --- */
-        .logo i { font-size: 2rem; color: var(--primary); }
-        
-        .logo img { 
-            height: 60px; /* Sesuai permintaan */
-            width: auto;  /* Sesuai permintaan */
-            display: block; 
-        }
-
-        .logo span { color: var(--primary); }
-
-        nav ul { 
-            list-style: none; 
-            display: flex; 
-            gap: 20px; 
-            flex-wrap: wrap; /* Agar menu turun ke bawah jika layar penuh, bukan sembunyi */
             justify-content: center;
+            align-items: center;
+            flex-direction: column;
         }
 
-        nav a { 
-            color: #fff; 
-            text-decoration: none; 
-            font-weight: 500; 
-            transition: 0.3s; 
+        /* EFEK CRT (LAYAR TABUNG) */
+        body::after {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: rgba(18, 16, 16, 0.1);
+            opacity: 0;
+            z-index: 2;
+            pointer-events: none;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 2px, 3px 100%;
+            animation: flicker 0.15s infinite;
+        }
+
+        /* CONTAINER UTAMA */
+        .container {
             position: relative;
+            z-index: 10;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.8);
+            box-shadow: 0 0 50px rgba(255, 0, 0, 0.2);
+        }
+
+        /* TEXT GLITCH UTAMA */
+        .glitch {
+            font-size: 4rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            position: relative;
+            color: #ffffff;
+            letter-spacing: 5px;
+            margin-bottom: 20px;
+        }
+
+        /* Membuat lapisan duplikat untuk efek geser warna */
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #050505;
+        }
+
+        /* Lapisan Merah (Kiri) */
+        .glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 #ff00c1;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim 5s infinite linear alternate-reverse;
+        }
+
+        /* Lapisan Biru (Kanan) */
+        .glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 #00fff9;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim2 1s infinite linear alternate-reverse;
+        }
+
+        /* SUBTEXT MERAH */
+        .subtext {
+            color: #ff3333;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            animation: pulse 1s infinite;
+        }
+
+        /* PESAN KONTAK BERKEDIP */
+        .message-box {
+            font-size: 0.9rem;
+            color: #aaa;
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            margin-top: 20px;
         }
         
-        nav a:hover, nav a.active { color: var(--primary); }
-        
-        nav a.active::after {
-            content: ''; position: absolute; bottom: -5px; left: 0; width: 100%; height: 2px; background: var(--primary);
+        .contact-number {
+            display: block;
+            font-size: 1.5rem;
+            color: #ffff00;
+            margin-top: 10px;
+            background: #222;
+            padding: 10px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            border: 1px dashed #ffff00;
         }
 
-        /* --- CONTAINER UTAMA --- */
-        main { 
-            flex: 1; 
-            max-width: 1100px; 
-            margin: 100px auto 20px auto; /* Margin top untuk header fixed */
-            padding: 20px; 
-            width: 100%; 
+        /* KEYFRAMES ANIMASI */
+        @keyframes glitch-anim {
+            0% { clip: rect(30px, 9999px, 10px, 0); }
+            5% { clip: rect(80px, 9999px, 90px, 0); }
+            10% { clip: rect(40px, 9999px, 10px, 0); }
+            15% { clip: rect(10px, 9999px, 95px, 0); }
+            20% { clip: rect(50px, 9999px, 20px, 0); }
+            25% { clip: rect(20px, 9999px, 60px, 0); }
+            30% { clip: rect(90px, 9999px, 10px, 0); }
+            35% { clip: rect(60px, 9999px, 85px, 0); }
+            40% { clip: rect(30px, 9999px, 50px, 0); }
+            45% { clip: rect(10px, 9999px, 10px, 0); }
+            50% { clip: rect(70px, 9999px, 30px, 0); }
+            55% { clip: rect(20px, 9999px, 90px, 0); }
+            60% { clip: rect(50px, 9999px, 15px, 0); }
+            65% { clip: rect(90px, 9999px, 40px, 0); }
+            70% { clip: rect(10px, 9999px, 80px, 0); }
+            75% { clip: rect(60px, 9999px, 20px, 0); }
+            80% { clip: rect(30px, 9999px, 70px, 0); }
+            85% { clip: rect(80px, 9999px, 50px, 0); }
+            90% { clip: rect(20px, 9999px, 10px, 0); }
+            95% { clip: rect(50px, 9999px, 90px, 0); }
+            100% { clip: rect(10px, 9999px, 30px, 0); }
         }
 
-        /* --- STYLES UMUM --- */
-        h1.page-title { color: var(--primary); border-bottom: 1px solid #333; padding-bottom: 10px; margin-bottom: 30px; }
-        .btn { display: inline-block; background: var(--primary); color: #fff; padding: 10px 25px; text-decoration: none; border-radius: 5px; font-weight: bold; transition: 0.3s; }
-        .btn:hover { background: #cc3700; }
-        
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
-        .card { background: var(--card-bg); padding: 25px; border-radius: 10px; border: 1px solid #333; transition: 0.3s; }
-        .card:hover { transform: translateY(-5px); border-color: var(--primary); }
-
-        /* --- SECTION: BERANDA (HERO) --- */
-        .hero { 
-            text-align: center; 
-            padding: 100px 20px; 
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=1600&q=80'); 
-            background-size: cover; 
-            border-radius: 15px; 
-            margin-bottom: 40px; 
-            border: 1px solid #333;
+        @keyframes glitch-anim2 {
+            0% { clip: rect(15px, 9999px, 80px, 0); }
+            20% { clip: rect(90px, 9999px, 10px, 0); }
+            40% { clip: rect(30px, 9999px, 50px, 0); }
+            60% { clip: rect(60px, 9999px, 20px, 0); }
+            80% { clip: rect(10px, 9999px, 95px, 0); }
+            100% { clip: rect(50px, 9999px, 40px, 0); }
         }
 
-        .hero h1 { font-size: 2.5rem; margin-bottom: 15px; text-shadow: 2px 2px 5px #000; color: #fff; }
-        
-        /* Clock Styles */
-        .clock-container {
-            background: rgba(0, 0, 0, 0.6); padding: 15px 30px; border-radius: 10px;
-            border: 1px solid var(--primary); display: inline-block; margin-bottom: 25px;
-            box-shadow: 0 0 15px rgba(255, 69, 0, 0.3);
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.3; }
+            100% { opacity: 1; }
         }
-        .clock-time { font-family: 'Courier New', Courier, monospace; font-size: 2.5rem; font-weight: bold; color: #fff; letter-spacing: 3px; text-shadow: 0 0 10px var(--primary); }
-        .clock-date { font-size: 1rem; color: #ccc; margin-top: 5px; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* --- SECTION: PRODUK (LIST VIEW) --- */
-        .product-list-container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
-        
-        .product-row {
-            display: flex; align-items: center; background-color: var(--card-bg); padding: 10px;
-            border-radius: 8px; border: 1px solid #333; cursor: pointer; transition: 0.2s;
-        }
-        .product-row:hover { background-color: #2a2a2a; border-color: var(--primary); }
-        
-        .product-thumb { width: 70px; height: 70px; flex-shrink: 0; border-radius: 5px; overflow: hidden; margin-right: 15px; border: 1px solid #444; }
-        .product-thumb img { width: 100%; height: 100%; object-fit: cover; }
-        
-        .product-details { flex-grow: 1; }
-        .product-title { font-size: 1rem; font-weight: 600; color: #fff; margin-bottom: 2px; }
-        .product-price { font-size: 0.95rem; color: var(--primary); font-weight: bold; }
-        .row-arrow { color: #555; font-size: 1.2rem; padding-left: 10px; }
-
-        /* --- SECTION: KONTAK --- */
-        .contact-info { background: var(--card-bg); padding: 30px; border-radius: 10px; text-align: center; border: 1px solid var(--primary); }
-
-        /* --- FOOTER --- */
-        footer { background: #000; text-align: center; padding: 20px; margin-top: auto; border-top: 1px solid #333; color: #777; }
-
-        /* --- MODAL 1: PRODUCT DETAIL --- */
-        .modal {
-            display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.8); align-items: center; justify-content: center; backdrop-filter: blur(5px);
-        }
-        .modal-content {
-            background-color: #1e1e1e; padding: 25px; border-radius: 12px; width: 90%; max-width: 450px;
-            position: relative; border: 1px solid var(--primary); box-shadow: 0 10px 30px rgba(0,0,0,0.5); animation: zoomIn 0.3s ease;
-        }
-        @keyframes zoomIn { from {transform: scale(0.8); opacity: 0;} to {transform: scale(1); opacity: 1;} }
-        .close-btn { position: absolute; top: 10px; right: 15px; color: #aaa; font-size: 28px; font-weight: bold; cursor: pointer; }
-        .modal-img { width: 100%; height: 250px; object-fit: cover; border-radius: 8px; margin-bottom: 15px; border: 1px solid #333; }
-        .modal-title { color: var(--primary); font-size: 1.4rem; margin-bottom: 5px; }
-        .modal-price { font-size: 1.2rem; font-weight: bold; margin-bottom: 15px; display: block; }
-        .modal-desc { color: #ccc; font-size: 0.95rem; margin-bottom: 25px; line-height: 1.5; border-top: 1px solid #333; padding-top: 10px;}
-        .btn-modal-buy { display: block; width: 100%; background: #25D366; color: white; text-align: center; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 1rem; transition: 0.3s; }
-        .btn-modal-buy:hover { background: #1ebc57; }
-
-        /* --- MODAL 2: WELCOME OVERLAY --- */
-        .welcome-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); z-index: 9999;
-            display: flex; justify-content: center; align-items: center;
-            opacity: 0; visibility: hidden; transition: all 0.5s ease-in-out;
-        }
-        .welcome-overlay.show { opacity: 1; visibility: visible; }
-        
-        .welcome-ui-box {
-            display: flex; width: 850px; max-width: 90%; background: linear-gradient(145deg, #1e1e1e, #121212);
-            border-radius: 20px; overflow: hidden; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5); border: 1px solid #333;
-            transform: translateY(30px); transition: 0.5s;
-        }
-        .welcome-overlay.show .welcome-ui-box { transform: translateY(0); }
-        
-        .welcome-visual { flex: 1; background: url('https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=800&q=80') center/cover no-repeat; position: relative; }
-        .welcome-visual::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(18,18,18,1) 100%); }
-        
-        .welcome-content { flex: 1; padding: 50px; display: flex; flex-direction: column; justify-content: center; text-align: left; position: relative; }
-        .welcome-tag { color: var(--primary); font-size: 0.8rem; letter-spacing: 2px; font-weight: bold; margin-bottom: 10px; text-transform: uppercase; }
-        .welcome-content h2 { font-size: 2.5rem; line-height: 1.2; color: #fff; margin-bottom: 15px; }
-        .welcome-content p { color: #a0a0a0; font-size: 1rem; margin-bottom: 30px; line-height: 1.6; }
-        .btn-welcome { background: var(--primary); color: #fff; padding: 15px 30px; border: none; border-radius: 50px; font-weight: bold; font-size: 1rem; cursor: pointer; align-self: flex-start; transition: 0.3s; }
-        .btn-welcome:hover { background: #ff6a33; transform: translateY(-3px); }
-
-        /* --- FLOATING WA --- */
-        .floating-wa {
-            position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px;
-            background-color: #25D366; color: white; border-radius: 50%;
-            display: flex; justify-content: center; align-items: center; font-size: 30px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5); z-index: 990; text-decoration: none; transition: 0.3s;
-        }
-        .floating-wa:hover { transform: scale(1.1); }
-
-        /* --- RESPONSIF (Sederhana tanpa hamburger) --- */
-        @media (max-width: 768px) {
-            header { flex-direction: column; gap: 15px; padding: 10px 5%; }
-            .hero h1 { font-size: 2rem; }
-            
-            /* Menu tetap tampil, hanya turun ke bawah (wrap) */
-            nav ul { width: 100%; justify-content: center; gap: 10px; font-size: 0.9rem; }
-            
-            /* Welcome Modal Responsive */
-            .welcome-ui-box { flex-direction: column; }
-            .welcome-visual { height: 150px; flex: none; }
-            .welcome-visual::after { background: linear-gradient(to bottom, rgba(0,0,0,0), #121212); }
-            .welcome-content { padding: 30px; text-align: center; }
-            .btn-welcome { align-self: center; width: 100%; }
+        @keyframes flicker {
+            0% { opacity: 0.1; }
+            5% { opacity: 0.2; }
+            10% { opacity: 0.1; }
+            100% { opacity: 0.1; }
         }
     </style>
 </head>
 <body>
 
-    <!-- WELCOME MODAL -->
-    <div id="welcomeOverlay" class="welcome-overlay">
-        <div class="welcome-ui-box">
-            <div class="welcome-visual"></div>
-            <div class="welcome-content">
-                <span class="welcome-tag">EST. 2026</span>
-                <h2>Welcome to<br>Garage <span style="color:var(--primary)">214</span></h2>
-                <p>
-                    Pusat modifikasi dan perawatan motor terpercaya. 
-                    Kami mengubah performa standar menjadi luar biasa.
-                    <br><br>
-                    <em>"Speed is not just a number, it's an art."</em>
-                </p>
-                <button class="btn-welcome" onclick="closeWelcome()">MULAI JELAJAHI 🚀</button>
-            </div>
+    <div class="container">
+        <h1 class="glitch" data-text="YOU HAVE BEEN HACKED">YOU HAVE BEEN HACKED</h1>
+        
+        <p class="subtext">
+            YOUR SYSTEM IS COMPROMISED<br>
+            ALL FILES ENCRYPTED
+        </p>
+
+        <div class="message-box">
+            TO RECOVER YOUR ACCESS, CONTACT:
+            <span class="contact-number">0831-5561-9441</span>
+            
+            <br>
+            <span style="font-size: 0.8rem; color: #555;">ID: #992-AX-UNKNOWN</span>
         </div>
     </div>
 
-    <!-- PRODUCT DETAIL MODAL -->
-    <div id="productModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <img id="m-img" class="modal-img" src="" alt="Produk">
-            <h2 id="m-title" class="modal-title">Nama Produk</h2>
-            <span id="m-price" class="modal-price">Rp 0</span>
-            <p id="m-desc" class="modal-desc">Deskripsi produk...</p>
-            <a id="m-buy" href="#" class="btn-modal-buy" target="_blank">Beli via WhatsApp</a>
-        </div>
-    </div>
-
-    <!-- HEADER -->
-    <header>
-        <a href="#" class="logo" onclick="switchPage(event, 'home')">
-            <!-- Ikon FontAwesome -->
-            <!-- <i class="fas fa-cogs"></i> -->
-            <!-- Gambar Icon Lokal (Jika Anda punya file img/icon.png hapus baris <i> di atas dan uncomment baris bawah ini) -->
-             <img src="https://raw.githubusercontent.com/zmanias/web-garage214/refs/heads/main/img/icon.png" alt="Logo"> 
-            <div>GARAGE <span>214</span></div>
-        </a>
-        <nav>
-            <!-- Navigasi tanpa hamburger menu -->
-            <ul>
-                <li><a href="#home" class="nav-link active" onclick="switchPage(event, 'home')">Beranda</a></li>
-                <li><a href="#about" class="nav-link" onclick="switchPage(event, 'about')">Tentang</a></li>
-                <li><a href="#products" class="nav-link" onclick="switchPage(event, 'products')">Produk/Jasa</a></li>
-                <li><a href="#testimonials" class="nav-link" onclick="switchPage(event, 'testimonials')">Testimoni</a></li>
-                <li><a href="#contact" class="nav-link" onclick="switchPage(event, 'contact')">Kontak</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-        <!-- HALAMAN BERANDA -->
-        <section id="home" class="visible-section">
-            <div class="hero">
-                <div class="clock-container">
-                    <div class="clock-time" id="digitalClock">00:00:00</div>
-                    <div class="clock-date" id="digitalDate">MEMUAT WAKTU...</div>
-                </div>
-                <h1>SOLUSI PERFORMA MOTOR</h1>
-                <p>Spesialis Custom Pully, Bore Up, & Tune Up di Jakarta Utara.</p>
-                <br>
-                <a href="#products" class="btn" onclick="switchPage(event, 'products')">Lihat Layanan Kami</a>
-            </div>
-
-            <div style="text-align: center; max-width: 800px; margin: 0 auto 50px auto;">
-                <h2 style="color: var(--primary); margin-bottom: 20px;">Selamat Datang di Garage 214</h2>
-                <p>Kami adalah bengkel spesialis yang fokus pada peningkatan performa motor harian dan touring. Dengan penanganan mekanik berpengalaman, kami menjamin motor Anda menjadi lebih responsif.</p>
-            </div>
-        </section>
-
-        <!-- HALAMAN TENTANG -->
-        <section id="about" class="hidden-section">
-            <h1 class="page-title">Tentang Produk & Jasa Kami</h1>
-            <div class="grid">
-                <div class="card">
-                    <h3 style="color:var(--primary)">Latar Belakang</h3>
-                    <p>Garage 214 didirikan atas dasar hobi dan passion di dunia balap yang diaplikasikan untuk motor harian. Kami memahami kebutuhan pengendara yang ingin motornya "lebih dari standar" tanpa mengorbankan durabilitas.</p>
-                </div>
-                <div class="card">
-                    <h3 style="color:var(--primary)">Keunggulan Jasa</h3>
-                    <ul style="margin-left: 20px; margin-top: 10px;">
-                        <li>🛠️ Pengerjaan Presisi (Bubut & Porting).</li>
-                        <li>⏱️ Pengerjaan Cepat & Tepat Waktu.</li>
-                        <li>💰 Harga sangat bersahabat (Student Price).</li>
-                        <li>🤝 Konsultasi gratis sebelum eksekusi.</li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h3 style="color:var(--primary)">Target Konsumen</h3>
-                    <p>Layanan kami sangat cocok untuk Mahasiswa yang ingin motornya kencang ke kampus, Ojek Online yang butuh akselerasi lincah, dan Penghobi Touring.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- HALAMAN PRODUK -->
-        <section id="products" class="hidden-section">
-            <h1 class="page-title">Sparepart & Layanan</h1>
-            <p style="text-align:center; margin-bottom:20px; font-size:0.9rem; color:#888;">Klik produk untuk melihat detail</p>
-
-            <div class="product-list-container">
-                <!-- Item 1 -->
-                <div class="product-row" onclick="openModal(this)"
-                     data-img="https://raw.githubusercontent.com/zmanias/web-garage214/refs/heads/main/img/p1.jpg"
-                     data-title="NOKEN AS RACING SKYWAVE/SPIN/HAYATE"
-                     data-price="Rp 400.000"
-                     data-desc="Noken as custom durasi in 260 ex 265. Lift 8.5mm. Cocok untuk bore up harian 150cc ke atas. Power atas lebih jalan.">
-                    <div class="product-thumb"><img src="https://raw.githubusercontent.com/zmanias/web-garage214/refs/heads/main/img/p1.jpg" onerror="this.src='https://placehold.co/100x100/333/fff?text=IMG'"></div>
-                    <div class="product-details"><div class="product-title">NOKEN AS RACING SKYWAVE/SPIN/HAYATE</div><div class="product-price">Rp 400.000</div></div>
-                    <div class="row-arrow">&#10095;</div>
-                </div>
-                <!-- Item 2 -->
-                <div class="product-row" onclick="openModal(this)"
-                     data-img="https://raw.githubusercontent.com/zmanias/web-garage214/refs/heads/main/img/p2.jpg"
-                     data-title="NOKEN AS RACING VARIO Motorcycle"
-                     data-price="Rp 400.000"
-                     data-desc="Tipe R1 untuk harian. Low noise (tidak berisik). Menambah akselerasi tanpa mengorbankan konsumsi BBM. PnP (Plug and Play).">
-                    <div class="product-thumb"><img src="https://raw.githubusercontent.com/zmanias/web-garage214/refs/heads/main/img/p2.jpg" onerror="this.src='https://placehold.co/100x100/333/fff?text=IMG'"></div>
-                    <div class="product-details"><div class="product-title">NOKEN AS RACING VARIO Motorcycle</div><div class="product-price">Rp 400.000</div></div>
-                    <div class="row-arrow">&#10095;</div>
-                </div>
-                <!-- Item 3 -->
-                <div class="product-row" onclick="openModal(this)"
-                     data-img="https://raw.githubusercontent.com/zmanias/web-garage214/refs/heads/main/img/p3.jpg"
-                     data-title="PULLY RACING GENIO, BEAT, SCOOPY, KOJ"
-                     data-price="Rp 255.000"
-                     data-desc="Spec Road Race. Material Hardened Steel. Awet dan presisi. Garansi ngelitik uang kembali.">
-                    <div class="product-thumb"><img src="https://raw.githubusercontent.com/zmanias/web-garage214/refs/heads/main/img/p3.jpg" onerror="this.src='https://placehold.co/100x100/333/fff?text=IMG'"></div>
-                    <div class="product-details"><div class="product-title">PULLY RACING GENIO, BEAT, SCOOPY, KOJ</div><div class="product-price">Rp 255.000</div></div>
-                    <div class="row-arrow">&#10095;</div>
-                </div>
-                <!-- Item 4 -->
-                <div class="product-row" onclick="openModal(this)"
-                     data-img="https://raw.githubusercontent.com/zmanias/web-garage214/refs/heads/main/img/p4.jpg"
-                     data-title="NOKEN AS RACING YAMAHA MIO"
-                     data-price="Rp 400.000"
-                     data-desc="Rumah Roller + Kipas bubut derajat 13.8 & Kerok jalur roller presisi. Menghilangkan gredek dan menambah top speed.">
-                    <div class="product-thumb"><img src="https://raw.githubusercontent.com/zmanias/web-garage214/refs/heads/main/img/p4.jpg" onerror="this.src='https://placehold.co/100x100/333/fff?text=IMG'"></div>
-                    <div class="product-details"><div class="product-title">NOKEN AS RACING YAMAHA MIO</div><div class="product-price">Rp 400.000</div></div>
-                    <div class="row-arrow">&#10095;</div>
-                </div>
-                <!-- Item 5 -->
-                <div class="product-row" onclick="openModal(this)"
-                     data-img="https://raw.githubusercontent.com/zmanias/web-garage214/refs/heads/main/img/p5.jpg"
-                     data-title="PULLY RACING HONDA BEAT K44"
-                     data-price="Rp 255.000"
-                     data-desc="Noken as Mio Sporty/Smile/Soul. Lift tinggi aman klep standar. Cocok untuk drag 201m atau harian kebut.">
-                    <div class="product-thumb"><img src="https://raw.githubusercontent.com/zmanias/web-garage214/refs/heads/main/img/p5.jpg" onerror="this.src='https://placehold.co/100x100/333/fff?text=IMG'"></div>
-                    <div class="product-details"><div class="product-title">PULLY RACING HONDA BEAT K44</div><div class="product-price">Rp 255.000</div></div>
-                    <div class="row-arrow">&#10095;</div>
-                </div>
-                <!-- Item 6 -->
-                <div class="product-row" onclick="openModal(this)"
-                     data-img="https://raw.githubusercontent.com/zmanias/web-garage214/refs/heads/main/img/p6.jpg"
-                     data-title="PULLY RACING HONDA VARIO KZR"
-                     data-price="Rp 255.000"
-                     data-desc="Set Pully Depan Custom untuk Beat ESP/Scoopy ESP (Kode K44). Respon gas lebih padat.">
-                    <div class="product-thumb"><img src="https://raw.githubusercontent.com/zmanias/web-garage214/refs/heads/main/img/p6.jpg" onerror="this.src='https://placehold.co/100x100/333/fff?text=IMG'"></div>
-                    <div class="product-details"><div class="product-title">PULLY RACING HONDA VARIO KZR</div><div class="product-price">Rp 255.000</div></div>
-                    <div class="row-arrow">&#10095;</div>
-                </div>
-                <!-- Item 7 -->
-                <div class="product-row" onclick="openModal(this)"
-                     data-img="https://raw.githubusercontent.com/zmanias/web-garage214/refs/heads/main/img/p7.jpg"
-                     data-title="PULLY RACING HONDA VARIO K36"
-                     data-price="Rp 255.000"
-                     data-desc="Per CVT bahan baja jepang, anti letoy kena panas. Ukuran 1500 RPM cocok untuk stop n go macet Jakarta.">
-                    <div class="product-thumb"><img src="https://raw.githubusercontent.com/zmanias/web-garage214/refs/heads/main/img/p7.jpg" onerror="this.src='https://placehold.co/100x100/333/fff?text=IMG'"></div>
-                    <div class="product-details"><div class="product-title">PULLY RACING HONDA VARIO K36</div><div class="product-price">Rp 255.000</div></div>
-                    <div class="row-arrow">&#10095;</div>
-                </div>
-                <!-- Item 8 -->
-                <div class="product-row" onclick="openModal(this)"
-                     data-img="https://raw.githubusercontent.com/zmanias/web-garage214/refs/heads/main/img/p8.jpg"
-                     data-title="NOKEN AS RACING MAXI SERIES"
-                     data-price="Rp 550.000"
-                     data-desc="Mangkok ganda custom bolong & kartel kasar. Obat ampuh gredek Vario/PCX/Nmax. Kampas ganda lebih gigit.">
-                    <div class="product-thumb"><img src="https://raw.githubusercontent.com/zmanias/web-garage214/refs/heads/main/img/p8.jpg" onerror="this.src='https://placehold.co/100x100/333/fff?text=IMG'"></div>
-                    <div class="product-details"><div class="product-title">NOKEN AS RACING MAXI SERIES</div><div class="product-price">Rp 550.000</div></div>
-                    <div class="row-arrow">&#10095;</div>
-                </div>
-                <!-- Item 9 -->
-                <div class="product-row" onclick="openModal(this)"
-                     data-img="https://raw.githubusercontent.com/zmanias/web-garage214/refs/heads/main/img/p9.jpg"
-                     data-title="PULLY RACING 2DP MAXI ONLY"
-                     data-price="Rp 295.000"
-                     data-desc="Paket Sultan: Blok Ceramic 58mm + Piston Forged + Injektor Racing + Packing. Tinggal pasang, motor auto terbang.">
-                    <div class="product-thumb"><img src="https://raw.githubusercontent.com/zmanias/web-garage214/refs/heads/main/img/p9.jpg" onerror="this.src='https://placehold.co/100x100/333/fff?text=IMG'"></div>
-                    <div class="product-details"><div class="product-title">PULLY RACING 2DP MAXI ONLY</div><div class="product-price">Rp 295.000</div></div>
-                    <div class="row-arrow">&#10095;</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- HALAMAN TESTIMONI -->
-        <section id="testimonials" class="hidden-section">
-            <h1 class="page-title">Apa Kata Mereka?</h1>
-            <div class="grid">
-                <div class="card">
-                    <p style="font-style: italic;">"Awalnya ragu mau bore up buat harian, tapi setelah dikerjain di Garage 214, motor aman dipake kuliah tiap hari, bensin juga tetep irit!"</p>
-                    <br>
-                    <h4 style="color:var(--primary)">— Ahmad, Mahasiswa Teknik</h4>
-                </div>
-                <div class="card">
-                    <p style="font-style: italic;">"Custom Pully-nya ajaib! Vario gue yang tadinya lemot di tanjakan sekarang ngacir parah. Rekomen banget!"</p>
-                    <br>
-                    <h4 style="color:var(--primary)">— Bagas, Driver Ojol</h4>
-                </div>
-                <div class="card">
-                    <p style="font-style: italic;">"Pelayanan ramah, mekanik enak diajak diskusi, harganya juga masuk akal. Gak nembak harga sembarangan."</p>
-                    <br>
-                    <h4 style="color:var(--primary)">— Kevin, Member Club Motor</h4>
-                </div>
-            </div>
-        </section>
-
-        <!-- HALAMAN KONTAK -->
-        <section id="contact" class="hidden-section">
-            <h1 class="page-title">Hubungi Kami</h1>
-            <div class="contact-info">
-                <h2 style="color:var(--primary)">GARAGE 214</h2>
-                <p>Siap bikin motormu kencang? Segera hubungi atau datang ke workshop kami.</p>
-                <br>
-                
-                <div style="margin-bottom: 20px;">
-                    <h3 style="color:var(--primary)">Pemilik Usaha</h3>
-                    <p>Achmad Farhan Hamdani</p>
-                </div>
-
-                <div style="margin-bottom: 20px;">
-                    <h3 style="color:var(--primary)">Alamat Workshop</h3>
-                    <p>Gg. 1 Jl. Rorotan VII Malaka III HB No.38,<br> 
-                       RT.4/RW.5, Rorotan, Kec. Cilincing,<br>
-                       Jakarta Utara, 14140, Indonesia</p>
-                </div>
-
-                <div style="margin-bottom: 30px;">
-                    <h3 style="color:var(--primary)">WhatsApp</h3>
-                    <p style="font-size: 1.2rem; font-weight: bold;">0852-1701-2984</p>
-                </div>
-
-                <a href="https://wa.me/6285217012984?text=Halo%20Garage214,%20saya%20mau%20tanya%20tentang%20service%20motor" class="btn" style="background-color: #25D366; color: white; padding: 15px 30px; border-radius: 50px;">
-                    CHAT WHATSAPP SEKARANG
-                </a>
-            </div>
-        </section>
-    </main>
-
-    <!-- FOOTER -->
-    <footer>
-        <p>&copy; 2026 Garage 214. All Rights Reserved.</p>
-    </footer>
-
-    <!-- FLOATING WA BUTTON -->
-    <a href="https://wa.me/6285217012984" target="_blank" class="floating-wa">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
-    <!-- JAVASCRIPT -->
     <script>
-        // --- 1. NAVIGATION SPA (PENCEGAH RELOAD) ---
-        function switchPage(event, pageId) {
-            if(event) event.preventDefault(); // Cegah reload
-
-            // Sembunyikan semua section
-            const sections = document.querySelectorAll('section');
-            sections.forEach(sec => sec.classList.remove('visible-section'));
-            sections.forEach(sec => sec.classList.add('hidden-section'));
-
-            // Tampilkan section yang dituju
-            const target = document.getElementById(pageId);
-            if(target) {
-                target.classList.remove('hidden-section');
-                target.classList.add('visible-section');
-                window.scrollTo(0, 0);
-            }
-
-            // Update menu aktif
-            const links = document.querySelectorAll('a.nav-link');
-            links.forEach(link => {
-                link.classList.remove('active');
-                if(link.getAttribute('href') === '#' + pageId) {
-                    link.classList.add('active');
-                }
-            });
-        }
-
-        // --- 2. LOGIKA JAM DIGITAL ---
-        function updateClock() {
-            const now = new Date();
-            let h = now.getHours().toString().padStart(2, '0');
-            let m = now.getMinutes().toString().padStart(2, '0');
-            let s = now.getSeconds().toString().padStart(2, '0');
-            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            const dateString = now.toLocaleDateString('id-ID', options);
-
-            document.getElementById('digitalClock').innerText = `${h}:${m}:${s}`;
-            document.getElementById('digitalDate').innerText = dateString;
-        }
-        setInterval(updateClock, 1000);
-        updateClock();
-
-        // --- 3. LOGIKA WELCOME MODAL ---
-        window.onload = function() {
-            if (!sessionStorage.getItem('alreadyVisited')) {
-                setTimeout(() => {
-                    document.getElementById('welcomeOverlay').classList.add('show');
-                }, 500);
-            }
-        }
-        function closeWelcome() {
-            document.getElementById('welcomeOverlay').classList.remove('show');
-            sessionStorage.setItem('alreadyVisited', 'true');
-        }
-
-        // --- 4. LOGIKA PRODUCT MODAL ---
-        const modal = document.getElementById("productModal");
-        const mImg = document.getElementById("m-img");
-        const mTitle = document.getElementById("m-title");
-        const mPrice = document.getElementById("m-price");
-        const mDesc = document.getElementById("m-desc");
-        const mBuy = document.getElementById("m-buy");
-
-        function openModal(element) {
-            const img = element.getAttribute("data-img");
-            const title = element.getAttribute("data-title");
-            const price = element.getAttribute("data-price");
-            const desc = element.getAttribute("data-desc");
-
-            mImg.src = img;
-            mTitle.innerText = title;
-            mPrice.innerText = price;
-            mDesc.innerText = desc;
-
-            const waNumber = "6285217012984";
-            const message = `Halo Garage214, saya mau beli *${title}* seharga ${price}. Apakah stok ready?`;
-            mBuy.href = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
-
-            modal.style.display = "flex";
-        }
-
-        function closeModal() {
-            modal.style.display = "none";
-        }
-
-        window.onclick = function(event) {
-            if (event.target == modal) closeModal();
-            if (event.target == document.getElementById('welcomeOverlay')) closeWelcome();
-        }
+        // Efek tambahan: Judul halaman berubah-ubah
+        setInterval(() => {
+            document.title = Math.random() > 0.5 ? "HACKED" : "SYSTEM ERROR";
+        }, 500);
     </script>
+
 </body>
 </html>
